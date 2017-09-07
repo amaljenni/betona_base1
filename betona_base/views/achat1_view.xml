@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+
+    
+    <record id="view_account_invoice_form_inherit_one" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit._one</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+          
+          <data>
+              <field name="amount_tax" position="after">
+                <field name="timbre_fiscal" readonly="1"/>
+              </field>
+          </data>
+        </field>
+    </record>
+    </odoo>

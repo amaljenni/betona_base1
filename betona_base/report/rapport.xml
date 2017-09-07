@@ -1,0 +1,21 @@
+<odoo>
+    
+    <data>
+        
+        <report id="insight_account_invoice" 
+        string="modifications.cav_report_invoice" 
+        model="account.invoice" 
+        report_type="qweb-pdf" 
+        menu="True" 
+        file="modifications.cav_report_invoice" 
+        name="modifications.cav_report_invoice"/>
+        
+            <!-- <record id="insight_report_account_invoice" model="ir.actions.report.xml">
+            
+                <field name="paperformat_id" ref="modifications.paperformat_invoice_cavavin"/>
+            
+        </record> -->
+        
+    </data>
+    
+</odoo>

@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="bon_de_liv" inherit_id="stock.report_delivery_document" >
+        
+        <xpath expr="//t[@t-value='False']" position="before">
+       
+             <style type="text/css">
+              td,th{
+                border-style:solid;
+               border-width: 2px;
+              }
+              table{
+              width:100%;
+              }
+                    
+             </style>
+             <div class="row">
+                <div class="col-xs-6">
+                    <table>
+             
+                        <thead>
+                            <tr>
+                                <th><strong><center>Client</center></strong></th>
+                                <th><strong><center>Ouvrage</center></strong></th>
+                                 <!-- <tr><td style="border-color:red;"/></tr> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center><span t-field="o.partner_id"/></center>
+                                </td>
+                                <td>
+                                    <center><span t-field="o.ouv"/></center>
+                                </td>
+                            </tr>
+                        </tbody>
+             
+                    </table>
+                </div>  
+                 <div class="col-xs-6">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th><strong><center>Adresse chantier</center></strong></th>
+                                <th><strong><center>Départ central</center></strong></th>
+                                <th><strong><center>Arrive client</center></strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <div t-if="o.adresse">
+                                    <td>
+                                        <center><span t-field="o.adresse"/></center>
+                                    </td>
+                                </div>
+                                <div t-if="not o.adresse">
+                                    <td>
+                                        <center>--</center>
+                                    </td>
+                                </div>
+                                <div t-if="o.dc">
+                                    <td>
+                                
+                                    <center><span t-field="o.dc"/></center>
+                                    </td>
+                                </div>
+                                <div t-if="not o.dc">
+                                    <td>
+                                    <center>--</center>
+                                    </td>
+                                </div>
+                                    
+                                    <div t-if="o.ac">
+                                    <td>
+                                    <center><span t-field="o.ac"/></center>
+                                    </td>
+                                    </div>
+                                    <div t-if="not o.ac">
+                                    <td>
+                                        <center>--</center>
+                                    </td>
+                                    </div>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+               
+               <br/><br/>
+               
+               
+                <div class="row">
+                
+                 <div class="col-xs-6">
+                 
+                     <table>
+                       
+                            <tr>
+                            	<th><strong><center>Gravier</center></strong></th>
+                                <td colspan="5">
+                                    <center><span t-field="o.gravier"/></center>
+                                </td>
+                                
+                            </tr>
+                            
+                            <tr>
+                               <th><strong><center>Taille</center></strong></th>
+                               <td t-if="o.typ1==True" colspan="5">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" checked="true">5/8</input></label>
+                                     </div>
+                                    </center>
+                                </td>
+                            
+                                <td t-if="o.typ1==False">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox">5/8</input></label>
+                                    </div>
+                                    </center>
+                                </td>                                   
+                                <td t-if="o.typ2==True">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" checked="true">8/12</input></label>
+                                    </div>
+                                    </center>
+                                </td>
+                                
+                                <td t-if="o.typ2==False">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox">8/12</input></label>
+                                    </div>
+                                    </center>
+                                </td>  
+                                <td t-if="o.typ3==True">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" checked="true">12/20</input></label>
+                                    </div>
+                                    </center>
+                                </td>
+                                
+                                <td t-if="o.typ3==False">
+                                    <center>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox">12/20</input></label>
+                                    </div>
+                                    </center>
+                                </td> 
+                                <td t-if="o.typ4==True">
+                                    <center>
+                                    <div class="checkbox">
+                                     <label><input type="checkbox" checked="true">4/15</input></label>
+                                    </div>
+                                    </center>
+                                </td>
+                                
+                                <td t-if="o.typ4==False">
+                                    <center>
+                                    <div class="checkbox">
+                                     <label><input type="checkbox">4/15</input></label>
+                                    </div>
+                                    </center>
+                                </td> 
+                            </tr>
+                    </table> 
+                </div>
+                
+               
+                
+                <div class="col-xs-6">
+                    <div class="row">
+                            <div class="col-xs-6">
+            	                <table>
+                                 <tr colspan="5">
+                                     <th><strong><center>Pompage</center></strong></th>
+                                     <th><strong><center>Sans Pompage</center></strong></th>
+                                 </tr>
+                                 <tr>
+                                     <td>
+                                        <div t-if="o.pomp==True">
+                                        <center>
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" checked="true"></input></label>
+                                            </div>
+                                        </center>
+                                         </div>
+                                         <div t-if="o.pomp==False">
+                                        <center>
+                                             <div class="checkbox">
+                                                 <label><input type="checkbox" cheked="false"></input></label>
+                                             </div>
+                                        </center>     
+                                         </div>
+                                   
+                                     </td>
+                                 
+                                    <td>
+                                        <div t-if="o.npomp==True">
+                                        <center>     
+                                             <div class="checkbox">
+                                                 <label><input type="checkbox" checked="true"></input></label>
+                                             </div>
+                                        </center>     
+                                         </div>
+                                     
+                                 
+                                         <div t-if="o.npomp==False">
+                                         <center>    
+                                             <div class="checkbox">
+                                                 <label><input type="checkbox" checked="false"></input></label>
+                                             </div>
+                                         </center>    
+                                         </div>
+                                    </td> 
+                                     
+                                      <!-- <td t-if="not o.pomp==False">
+                                         <div class="checkbox">
+                                             <label><input type="checkbox"></input></label>
+                                         </div>
+                                     </td> -->
+            							</tr> 
+            	                     </table>
+            	            </div>
+            	            <div class="col-xs-3">
+            	                <table>
+                                    <thead>
+                                        <tr>
+                                            <th><strong><center>Adjuvant</center></strong></th>
+                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div t-if="o.adju">
+                                                    <center><span t-field="o.adju"/></center>
+                                                </div>
+                                               <div t-if="not o.adju">
+                                                    <center>--</center>
+                                                </div>
+                                            </td>
+                                    
+                                        </tr>
+                                    </tbody>
+                                </table>  
+            	            </div>
+            	            <div class="col-xs-3">
+            	               <table>
+            	                   <tr>
+            	                       <th><center>eau</center></th>
+            	                       <th><center>sable</center></th>
+            	                   </tr>
+            	                   <tr>
+            	                       <td>
+            	                       <center>
+                	                       <div t-if="o.eau==True">
+                	                           <input type="checkbox" checked="True"/>
+                	                       </div>
+                	                   </center>
+                	                   <center>    
+                                           <div t-if="o.eau==False">
+                                               <input type="checkbox" checked="False"/>
+                                           </div>
+                                       </center>     
+            	                       </td>
+                                       <td>
+                                       <center>
+                                           <div t-if="o.sab==True">
+                                               <input type="checkbox" checked="True"/>
+                                           </div>
+                                       </center>
+                                       <center>    
+                                           <div t-if="o.sab==False">
+                                               <input type="checkbox" checked="False"/>
+                                           </div>
+                                       </center>         
+                                       </td>
+                                   </tr>
+            	               </table>
+            	            </div>
+        	         </div>
+    	        </div>
+	         </div>
+	         <br/><br/>   
+             <div class="row">
+                 <div class="col-xs-6">
+                    <table >
+                    
+                    		<tr>
+                    			<th colspan="4"><center>Dosage ciment</center></th>
+                    		</tr>
+                            <tr>
+                                <td t-if="o.dosage1" colspan="2" >
+                                   <center>                                
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" checked="true">CPA 42.5</input></label>
+                                    </div>
+                                    </center>
+                                </td>
+                                
+                              
+                            
+                                <td t-if="not o.dosage1" colspan="2">
+                                  <center>
+                                    <div class="checkbox">
+                                     <label><input type="checkbox">CPA 42.5</input></label>
+                                    </div>
+                                  </center>  
+                                </td> 
+                            
+	                            <td t-if="o.dosage2" colspan="2">
+	                                <center>
+	                                <div class="checkbox">
+	                                    <label><input type="checkbox" checked="true">HRS</input></label>
+	                                </div>
+	                                </center>
+	                            </td>
+	                            
+	                            <td t-if="not o.dosage2" colspan="2">
+	                            <center>
+	                                <div class="checkbox">
+	                                    <label><input type="checkbox">HRS</input></label>
+	                                </div>
+	                            </center>    
+	                            </td> 
+                            </tr>
+                            
+                            
+                            <tr>
+                            <td t-if="o.type1">
+                                <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" checked="true">250</input></label>
+                                </div>
+                                </center>
+                            </td>
+
+                           
+                            
+                            <td t-if="not o.type1">
+                            <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox">250</input></label>
+                                 </div>
+                            </center>     
+                            </td> 
+                            
+                            
+                            <td t-if="o.type2">
+                            <center>
+                                <div class="checkbox">
+                                 <label><input type="checkbox" checked="true">300</input></label>
+                                    </div>
+                            </center>        
+                            </td>
+                            
+                            
+                            
+                            
+                            <td t-if="not o.type2">
+                            <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox">300</input></label>
+                                </div>
+                            </center>    
+                            </td> 
+                               
+                            <td t-if="o.type3">
+                            <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" checked="true">350</input></label>
+                                </div>
+                             </center>   
+                            </td>
+                            
+                           
+                            
+                             <td t-if="not o.type3">
+                             <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox">350</input></label>
+                                </div>
+                            </center>    
+                            </td> 
+                              
+                            <td t-if="o.type4">
+                            <center>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" checked="true">400</input></label>
+                                </div>
+                            </center>    
+                            </td>
+                            
+                            
+                            
+                            
+                            <td t-if="not o.type4">
+                            <center>
+                                <div class="checkbox">
+                                 <label><input type="checkbox">400</input></label>
+                                </div>
+                            </center>    
+                            </td> 
+                                  
+                            </tr>
+                        
+                        
+                    </table>
+                </div>
+                    
+               
+                <div class="col-xs-6">
+                    <table >
+                        <thead>
+                            <tr>
+                                <strong><center>Eprouvette elevee</center></strong>
+                               
+                                
+                            </tr>
+                        </thead>
+                      
+                        <tbody>
+                            <tr>
+                             <th><strong><center>Nombre</center></strong></th>
+                                <th><strong><center>Client</center></strong></th>
+                                <th><strong><center>Represantant</center></strong></th>
+                                
+                            </tr>
+                           
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td >
+                                   <center><span t-field="o.nb"/></center>
+                                </td>
+                                 <td t-if="o.cl">
+                                    <span t-field="o.cl"/>
+                                </td>
+                                <td t-if="not o.cl">
+                                    <center>--</center>
+                                </td>
+                                <td t-if="o.rp">
+                                    <span t-field="o.rp"/>
+                                </td>
+                                <td t-if="not o.rp">
+                                    <center>--</center>
+                                </td>
+                                
+                            </tr>
+                        
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+            
+            <br/><br/>
+            <div class="row">            
+                <div class="col-xs-6">
+                    <table>
+        	            <tr>
+        	            	<th colspan="2">Monsieur:<span t-field="o.mr"/></th>
+        	            </tr>
+        	            <tr>
+        		            <td>déclare avoir reçu<br/><span t-field="o.qr"/> m Béton</td>
+        		            <td>déclare ajouter l'eau<br/><span t-field="o.qa"/>Litres </td>
+        	            </tr>
+                    
+                    </table>
+                </div>
+                <div class="col-xs-6">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th><strong><center>chauffeur</center></strong></th>
+                                <th><strong><center> Matricule camion</center></strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <div t-if="o.chauff">
+                                    <td>
+                                        <center><span t-field="o.chauff"/></center>
+                                    </td>
+                                </div>
+                                <div t-if="not o.chauff">
+                                    <td>
+                                        <center>--</center>
+                                    </td>
+                                </div>
+                                <div t-if="o.cam">
+                                    <td>
+                                
+                                    <center><span t-field="o.cam"/></center>
+                                    </td>
+                                </div>
+                                <div t-if="not o.cam">
+                                    <td>
+                                    <center>--</center>
+                                    </td>
+                                </div>
+                                    
+                                    
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-9">
+                    <strong>Ariana le <field t-field="o.date_de_livraison"/></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-9">
+                    <strong>Cherf de la centrale</strong>
+                </div>
+            </div>
+   
+        </xpath>
+         <xpath expr="//table[@class='table table-condensed']" position="attributes">
+            <attribute name="class">hidden</attribute>
+        </xpath>
+        <xpath expr="//table[@class='table table-condensed mt48'][2]" position="attributes">
+            <attribute name="class">hidden</attribute>
+        </xpath>
+        <xpath expr="//div[@t-field='o.move_lines[0].partner_id']" position="attributes">
+            <attribute name="class">hidden</attribute>
+        </xpath>
+        
+       
+              
+     </template> 
+</odoo>

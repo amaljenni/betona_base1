@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+
+    
+    <record id="insight_view_account_invoice_form_tree" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='price_unit']" position="before">
+                    <field name="ptaxee"/>
+                </xpath>
+            </field>
+        </record>
+    
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <template id="insight_external_layout_header" inherit_id="report.external_layout_header">
+        <xpath expr="//div[@class='header']" position="replace">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="modifications/static/src/img/logo.jpg" width="10%"/>
+                    </div>
+                    <div class="col-xm-4">
+                        <h4>Bon de livraison Betona</h4>
+                    </div>
+                    <div class="col-xm-4">
+                        <div t-field="company.rml_header1"/>
+                    </div>               
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

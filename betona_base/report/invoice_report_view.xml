@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <template id="report_invoice" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-foreach='o._get_tax_amount_by_group()']" position="after">
+        <tr class="border-black">
+            <td><strong>Timbre Fiscal</strong></td>
+                <td class="text-right">
+                <span t-field="o.timbre_fiscal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+        </tr>
+        </xpath>
+        </template>
+    </data>
+</odoo>

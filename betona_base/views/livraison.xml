@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="view_stock_picking_form_inherit">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+        <field name="picking_type_id" position="after">
+            <field name="chauff"/>
+            <field name="cam"/>
+            <field name="date_de_livraison"/>
+             <field name="ouv"/>
+             <field name="pomp"/>
+              <field name="npomp"/>
+             <field name="dc"/>
+             <field name="ac"/>
+             <group string="Gravier">
+                 <field name="gravier"/>
+                 <field name="typ1"/>
+                 <field name="typ2"/>
+                 <field name="typ3"/>
+                 <field name="typ4"/>
+             </group>
+             <group string="Ciment">
+                 <field name="dosage1"/>
+                 <field name="dosage2"/>
+                 <field name="type1"/>
+                 <field name="type2"/>
+                 <field name="type3"/>
+                 <field name="type4"/>
+             </group>
+             </field>
+            <field name="priority" position="after">
+             <field name="adresse"/>
+             <field name="reference"/>
+             <field name="adju"/>
+             <field name="sab"/>
+             <field name="eau"/>
+             <field name="nb"/>
+             <field name="cl"/>
+             <field name="rp"/>
+             <field name="mr"/>
+             <field name="qr"/>
+             <field name="qa"/>
+               
+            </field>
+        </field>
+    </record>
+</odoo>

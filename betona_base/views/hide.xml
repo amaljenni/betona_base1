@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<odoo>
+
+     <record id="mrp_production_tree_view_chimix" model="ir.ui.view">
+            <field name="name">mrp.production.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="groups" eval="[(4,ref('mrp.group_mrp_user'))]"/>
+            <field name="domain">[ ('joker', '=', False)]</field>
+            <field name="arch" type="xml">
+                <tree decoration-bf="message_needaction==True" default_order="date_planned_start desc" decoration-info="state=='confirmed'" decoration-danger="date_planned_start&lt;current_date and state not in ('done','cancel')" decoration-muted="state in ('done','cancel')" string="Manufacturing Orders">
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="name"/>
+                    <field name="date_planned_start"/>
+                    <field name="product_id"/>
+                    <field name="product_qty" sum="Total Qty" string="Quantity"/>
+                    <field name="product_uom_id" string="Unit of Measure" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
+                    <field name="availability"/>
+                    <field name="routing_id" groups="mrp.group_mrp_routings"/>
+                    <field name="origin"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+     <record id="mrp_bom_form_action_chimix" model="ir.actions.act_window">
+            <field name="name">Bill of Materials</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.bom</field>
+            <field name="domain">[]</field> <!-- force empty -->
+             <field name="view_ids" eval="[(5, 0, 0), 
+                (0, 0, {'view_mode': 'tree','view_id': ref('mrp_production_tree_view_chimix')}), 
+                (0, 0, {'view_mode': 'form'}),                           
+                (0, 0, {'view_mode': 'kanban'})]"/>
+ 
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="mrp.view_mrp_bom_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a bill of material.
+              </p><p>
+                Bills of Materials allow you to define the list of required raw
+                materials used to make a finished product; through a manufacturing
+                order or a pack of products.
+              </p><p>
+                Odoo uses these BoMs to automatically propose manufacturing
+                orders according to procurement needs.
+              </p>
+            </field>
+        </record>  
+    
+     <record id="view_mrp_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="product_id" position="after">
+                    <field name="joker"/>
+                 </field>
+            </data>
+              
+                 
+         </field>
+    </record>
+    <record id="view_mrp_tree_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.tree.inherit</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <data>
+                  <field name="product_id" position="after">
+                    <field name="joker"/>
+                  </field>
+            </data>         
+         </field>
+    </record>
+
+    <record id="action_hide" model="ir.actions.act_window">
+        <field name="name">hide</field>
+        <field name="res_model">mrp.bom</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="mrp.menu_mrp_bom_form_action"
+    action="mrp.mrp_bom_form_action"
+    parent="mrp.menu_mrp_bom"
+    sequence="99"
+    groups="mrp.group_mrp_manager"/>
+   
+    <menuitem id="menu_mrp_bom_form_action"
+    action="mrp_bom_form_action_chimix"
+    parent="mrp.menu_mrp_bom"
+    sequence="99"
+    groups="mrp.group_mrp_user"/>
+            
+    
+     </odoo>

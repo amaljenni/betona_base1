@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <template id="insight_report_invoice" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='row']" position="replace">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="modifications/static/src/img/logo.jpg" width="60%"/>
+                    </div>
+                     <style type="text/css">
+              td,th{
+                externel border-style:solid;
+               border-width: 2px;
+              }
+              table{
+              width:100%;
+              }
+              </style>
+                    <div class="col-xs-4">
+                        <h3><center><strong>Bon de livraison</strong></center></h3>
+                        <h3><center><strong>BETONA</strong></center></h3>
+                    </div>
+                    <div class="col-xs-4">
+                    <table>
+                    <thead>
+                            <tr>
+                                <th><strong><center>Reservé à la direction</center></strong></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <div>
+                                    <td>
+                                        <center>--------------------</center>
+                                        <center>--------------------</center>
+                                    </td>
+                                </div>
+                                                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>               
+              </div>  
+            </xpath>
+        </template>
+    </data>
+</odoo>
